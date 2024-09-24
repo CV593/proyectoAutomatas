@@ -130,9 +130,9 @@ class AutomataApp:
         for estado in automata.transitions:
             for simbolo in automata.transitions[estado]:
                 destino = automata.transitions[estado][simbolo]
-                if isinstance(destino, frozenset):
-                    destino = list(destino)
-                if isinstance(destino, set):
+                if isinstance(destino, (frozenset, set)): 
+                    destino = list(destino) 
+                if isinstance(destino, list):  
                     for d in destino:
                         graph.add_edge(estado, d, label=simbolo)
                 else:
